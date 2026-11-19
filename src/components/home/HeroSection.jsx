@@ -1,14 +1,7 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  ArrowUpRight,
-  ArrowRight,
-  Check,
-  Leaf,
-  Sprout,
-} from "lucide-react";
+import { ArrowUpRight, ArrowRight, Check, Leaf, Sprout } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
 const HERO_IMAGE = "/logo.png";
@@ -103,10 +96,7 @@ export default function HeroSection() {
     >
       {/* ==========================================
           FULL WIDTH FARM BACKGROUND
-          SMOOTH FADE FROM RIGHT TO LEFT
       ========================================== */}
-
-      {/* PURE WHITE BASE */}
 
       <div
         aria-hidden="true"
@@ -116,8 +106,6 @@ export default function HeroSection() {
           bg-white
         "
       />
-
-      {/* FULL WIDTH FARM BACKGROUND */}
 
       <div
         aria-hidden="true"
@@ -148,7 +136,7 @@ export default function HeroSection() {
           "
         />
 
-        {/* MAIN SMOOTH WHITE FADE */}
+        {/* SMOOTH WHITE FADE */}
 
         <div
           className="
@@ -199,20 +187,20 @@ export default function HeroSection() {
       />
 
       {/* ==========================================
-          MAIN LAYOUT
+          MAIN LAYOUT - HEIGHT INCREASED
       ========================================== */}
 
       <div
         className="
-          relative z-10 mx-auto
-          grid min-h-[560px]
-          max-w-[1500px]
-          grid-cols-1 items-center
-          gap-6 px-6 py-12
-          sm:px-10
-          lg:grid-cols-[54%_46%]
-          lg:gap-0 lg:px-10 lg:py-8
-          xl:px-14
+          grid min-h-[600px]
+max-w-[1500px]
+grid-cols-1 items-center
+gap-6 px-6 py-10
+sm:px-10 sm:py-12
+lg:min-h-[660px]
+lg:grid-cols-[54%_46%]
+lg:gap-0 lg:px-10 lg:py-8
+xl:px-14
         "
       >
         {/* ==========================================
@@ -268,11 +256,7 @@ export default function HeroSection() {
               {t.title2}
 
               <motion.span
-                initial={
-                  reduceMotion
-                    ? false
-                    : { scaleX: 0 }
-                }
+                initial={reduceMotion ? false : { scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{
@@ -280,9 +264,7 @@ export default function HeroSection() {
                   delay: reduceMotion ? 0 : 0.55,
                   ease,
                 }}
-                style={{
-                  transformOrigin: "left",
-                }}
+                style={{ transformOrigin: "left" }}
                 className="
                   absolute -bottom-2 left-0
                   h-[4px] w-full
@@ -311,15 +293,9 @@ export default function HeroSection() {
 
           {/* POINTS */}
 
-          <motion.div
-            {...reveal(0.32)}
-            className="mt-6 space-y-3"
-          >
+          <motion.div {...reveal(0.32)} className="mt-6 space-y-3">
             {[t.point1, t.point2].map((point) => (
-              <div
-                key={point}
-                className="flex items-start gap-3"
-              >
+              <div key={point} className="flex items-start gap-3">
                 <span
                   className="
                     mt-[3px] flex h-5 w-5
@@ -413,24 +389,18 @@ export default function HeroSection() {
         <div
           className="
             relative mx-auto flex
-            h-[340px] w-full
+            h-[370px] w-full
             max-w-[600px]
             items-center justify-center
-            sm:h-[450px]
-            lg:h-[500px]
+            sm:h-[480px]
+            lg:h-[530px]
           "
         >
           {/* SOFT HALO */}
 
           <motion.div
             aria-hidden="true"
-            animate={
-              reduceMotion
-                ? undefined
-                : {
-                    scale: [1, 1.06, 1],
-                  }
-            }
+            animate={reduceMotion ? undefined : { scale: [1, 1.06, 1] }}
             transition={{
               duration: 7,
               repeat: Infinity,
@@ -450,21 +420,12 @@ export default function HeroSection() {
           {/* ROTATING GREEN + YELLOW RING */}
 
           <motion.div
-            initial={
-              reduceMotion
-                ? false
-                : {
-                    opacity: 0,
-                    scale: 0.8,
-                  }
-            }
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
             whileInView={{
               opacity: 1,
               scale: 1,
             }}
-            viewport={{
-              once: true,
-            }}
+            viewport={{ once: true }}
             transition={{
               duration: reduceMotion ? 0 : 1.1,
               ease,
@@ -475,13 +436,7 @@ export default function HeroSection() {
             "
           >
             <motion.div
-              animate={
-                reduceMotion
-                  ? undefined
-                  : {
-                      rotate: 360,
-                    }
-              }
+              animate={reduceMotion ? undefined : { rotate: 360 }}
               transition={{
                 duration: 65,
                 repeat: Infinity,
@@ -515,21 +470,12 @@ export default function HeroSection() {
           {/* ANIMATED PHOTO */}
 
           <motion.div
-            initial={
-              reduceMotion
-                ? false
-                : {
-                    opacity: 0,
-                    scale: 0.88,
-                  }
-            }
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.88 }}
             whileInView={{
               opacity: 1,
               scale: 1,
             }}
-            viewport={{
-              once: true,
-            }}
+            viewport={{ once: true }}
             transition={{
               duration: reduceMotion ? 0 : 1.1,
               delay: reduceMotion ? 0 : 0.2,
@@ -549,13 +495,7 @@ export default function HeroSection() {
               src={HERO_IMAGE}
               alt="Ganesh Nisal - Organic Farmer"
               fetchPriority="high"
-              animate={
-                reduceMotion
-                  ? undefined
-                  : {
-                      scale: [1, 1.045, 1],
-                    }
-              }
+              animate={reduceMotion ? undefined : { scale: [1, 1.045, 1] }}
               transition={{
                 duration: 10,
                 repeat: Infinity,
@@ -666,14 +606,7 @@ export default function HeroSection() {
           >
             <motion.div
               key={`photo-label-${language}`}
-              initial={
-                reduceMotion
-                  ? false
-                  : {
-                      opacity: 0,
-                      y: 8,
-                    }
-              }
+              initial={reduceMotion ? false : { opacity: 0, y: 8 }}
               animate={{
                 opacity: 1,
                 y: 0,
@@ -708,17 +641,9 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* ==========================================
-          SIMPLE ORANGE + GREEN BOTTOM LINE
-      ========================================== */}
+      {/* BOTTOM ORANGE + GREEN LINE */}
 
-      <div
-        aria-hidden="true"
-        className="
-          relative z-20
-          flex h-[4px] w-full
-        "
-      >
+      <div aria-hidden="true" className="relative z-20 flex h-[4px] w-full">
         <div className="h-full w-1/2 bg-[#FF7A1A]" />
         <div className="h-full w-1/2 bg-[#45B649]" />
       </div>
