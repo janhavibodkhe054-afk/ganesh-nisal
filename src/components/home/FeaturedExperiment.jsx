@@ -229,22 +229,7 @@ export default function FeaturedExperiment() {
               {t.imageNote}
             </span>
           </motion.div>
-
-          {/* CTA */}
-
-          <motion.div {...reveal(0.3)} className="mt-7">
-            <Link
-              to="/farming-experiments"
-              className="group inline-flex min-h-[49px] items-center gap-5 rounded-full bg-[#1E3D29] py-2 pl-5 pr-2 text-[12px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#329440]"
-            >
-              {t.cta}
-
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#1E3D29] transition-transform duration-300 group-hover:rotate-45">
-                <ArrowUpRight size={17} />
-              </span>
-            </Link>
-          </motion.div>
-        </div>
+          </div>
       </div>
     </section>
   );

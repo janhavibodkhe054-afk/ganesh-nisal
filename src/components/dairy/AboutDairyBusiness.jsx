@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
-const DAIRY_IMAGE = "/images/dairy-business.webp";
+const DAIRY_IMAGE = "/dairy.png";
 
 const CONTENT = {
   mr: {

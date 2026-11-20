@@ -204,7 +204,7 @@ export default function DairyOperations() {
             >
               {!imageFailed ? (
                 <img
-                  src="/images/dairy-farming.webp"
+                  src="/dairy2.png"
                   alt="Dairy farming"
                   loading="lazy"
                   onError={() => setImageFailed(true)}

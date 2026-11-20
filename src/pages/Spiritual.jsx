@@ -4,11 +4,13 @@ import ShivMandir from '../components/spiritual/ShivMandir'
 import ReligiousActivities from '../components/spiritual/ReligiousActivities'
 import EducationalSocialActivities from '../components/spiritual/EducationalSocialActivities'
 import TempleEventsGallery from '../components/spiritual/TempleEventsGallery'
+import SpiritualHero from '../components/spiritual/SpiritualHero'
 
 const Spiritual = () => {
   return (
     <div>
-      <SpiritualSocialSection/>
+      <SpiritualHero/>
+      
       <ShivMandir/>
       <ReligiousActivities/>
       <EducationalSocialActivities/>

@@ -231,20 +231,9 @@ export default function RecognitionSection() {
             <p>{t.description2}</p>
           </motion.div>
 
-          {/* CTA */}
+          
 
-          <motion.div {...reveal(0.28)} className="mt-6">
-            <Link
-              to="/achievements"
-              className="group inline-flex min-h-[49px] items-center gap-5 rounded-full bg-[#1E3D29] py-2 pl-5 pr-2 text-[12px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B18A3D]"
-            >
-              {t.cta}
-
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#1E3D29] transition-transform duration-300 group-hover:rotate-45">
-                <ArrowUpRight size={17} />
-              </span>
-            </Link>
-          </motion.div>
+          
         </div>
 
         {/* RIGHT AWARD PANEL */}

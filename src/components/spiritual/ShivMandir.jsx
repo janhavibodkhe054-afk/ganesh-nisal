@@ -96,7 +96,7 @@ export default function ShivMandir() {
 
   return (
     <section
-      id="spiritual-overview"
+       id="spiritual-overview"
       className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24"
     >
       {/* BACKGROUND DECORATION */}
@@ -119,7 +119,7 @@ export default function ShivMandir() {
 
               <div className="relative overflow-hidden rounded-[20px] bg-[#F0EBDF]">
                 <img
-                  src="/images/ichhapurti-temple-main.webp"
+                  src="/i1.jpeg"
                   alt="Shri Ichhapurti Shiv Mandir Bhagur Nashik"
                   loading="lazy"
                   className="h-[340px] w-full object-cover sm:h-[440px] lg:h-[470px]"
@@ -142,7 +142,7 @@ export default function ShivMandir() {
 
               <div className="absolute bottom-0 right-0 w-[43%] overflow-hidden rounded-[16px] border-[6px] border-white bg-[#EDE6D8] shadow-[0_15px_45px_rgba(0,0,0,0.12)]">
                 <img
-                  src="/images/ichhapurti-temple-detail.webp"
+                  src="/i31.jpeg"
                   alt="Shri Ichhapurti Shiv Mandir religious activities"
                   loading="lazy"
                   className="aspect-[4/3] w-full object-cover"

@@ -2,221 +2,295 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowDownRight,
+  ArrowUpRight,
   MapPin,
   Flower2,
-  HeartHandshake,
 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
-const CONTENT = {
+const TEMPLE_IMAGE =
+  "https://scontent.fpnq8-1.fna.fbcdn.net/v/t39.30808-6/470664507_122197322174219092_3981760150653144474_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=1HOuZtaU0u0Q7kNvwHn4u_Y&_nc_oc=AdrFkbzXGFJaZWyL9bGv1H-YXLxPVe-Yq7kQ6yQ2rc4Q2ggEnNLMLmqgS9TrI_MpSMA&_nc_zt=23&_nc_ht=scontent.fpnq8-1.fna&_nc_gid=-rDU474dxlFj5e0MZqnniA&_nc_ss=7b289&oh=00_AQRLFolu6UjuYeIy1Iu6g9TXh_1c1T849LkfOPTuQ6QEOQ&oe=6B04952B";
+
+const translations = {
   mr: {
     eyebrow: "SPIRITUAL & SOCIAL CONNECTION",
-    heading1: "श्रद्धा, भक्ती आणि",
-    heading2: "सामाजिक बांधिलकी!",
-    description:
-      "अध्यात्म, धार्मिक परंपरा आणि समाजहिताचे उपक्रम यांना जोडणाऱ्या कार्याची ओळख या विभागातून करून दिली आहे.",
+    heading1: "शेतीशी नातं,",
+    heading2: "शिवभक्तीशी श्रद्धा!",
+    description1:
+      "शेती आणि उद्योजकतेसोबत गणेश निसाळ यांची शिवभक्तीशीही जोडलेली ओळख आहे.",
     description2:
-      "भगूर, नाशिक येथील श्री इच्छापूर्ती शिव मंदिराशी संबंधित धार्मिक आणि सामाजिक उपक्रमांची माहिती येथे उपलब्ध आहे.",
+      "भगूर, नाशिक येथील श्री इच्छापूर्ती शिव मंदिराशी संबंधित धार्मिक व सामाजिक उपक्रमांची माहिती या विभागातून जाणून घेता येईल.",
+    temple: "श्री इच्छापूर्ती शिव मंदिर",
     location: "भगूर, नाशिक",
-    explore: "अधिक जाणून घ्या",
-    photoLabel: "श्री इच्छापूर्ती शिव मंदिर",
-    photoSub: "भगूर, नाशिक",
+    cta: "आध्यात्मिक व सामाजिक उपक्रम",
+    faith: "श्रद्धा",
+    community: "समाज",
+    label: "FAITH • DEVOTION • COMMUNITY",
   },
   en: {
     eyebrow: "SPIRITUAL & SOCIAL CONNECTION",
-    heading1: "Faith, Devotion &",
-    heading2: "Social Commitment!",
-    description:
-      "Discover activities that bring together spirituality, religious traditions, and community welfare.",
+    heading1: "Rooted in Farming,",
+    heading2: "Guided by Faith!",
+    description1:
+      "Alongside farming and entrepreneurship, Ganesh Nisal also has a connection with devotion to Lord Shiva.",
     description2:
-      "Explore religious and social initiatives associated with Shri Ichhapurti Shiv Mandir in Bhagur, Nashik.",
+      "Discover religious and social activities associated with Shri Ichhapurti Shiv Temple in Bhagur, Nashik.",
+    temple: "Shri Ichhapurti Shiv Temple",
     location: "Bhagur, Nashik",
-    explore: "Explore More",
-    photoLabel: "Shri Ichhapurti Shiv Mandir",
-    photoSub: "Bhagur, Nashik",
+    cta: "Spiritual & Social Activities",
+    faith: "Faith",
+    community: "Community",
+    label: "FAITH • DEVOTION • COMMUNITY",
   },
   hi: {
     eyebrow: "SPIRITUAL & SOCIAL CONNECTION",
-    heading1: "श्रद्धा, भक्ति और",
-    heading2: "सामाजिक प्रतिबद्धता!",
-    description:
-      "आध्यात्मिकता, धार्मिक परंपराओं और समाजहित के कार्यों से जुड़ी गतिविधियों का परिचय इस विभाग में दिया गया है।",
+    heading1: "खेती से जुड़ाव,",
+    heading2: "शिवभक्ति में आस्था!",
+    description1:
+      "खेती और उद्यमिता के साथ गणेश निसाल की पहचान शिवभक्ति से भी जुड़ी हुई है।",
     description2:
-      "भगूर, नासिक स्थित श्री इच्छापूर्ति शिव मंदिर से संबंधित धार्मिक और सामाजिक गतिविधियों की जानकारी यहाँ उपलब्ध है।",
-    location: "भगूर, नासिक",
-    explore: "और जानें",
-    photoLabel: "श्री इच्छापूर्ति शिव मंदिर",
-    photoSub: "भगूर, नासिक",
+      "भगूर, नाशिक स्थित श्री इच्छापूर्ति शिव मंदिर से जुड़े धार्मिक और सामाजिक उपक्रमों के बारे में जानें।",
+    temple: "श्री इच्छापूर्ति शिव मंदिर",
+    location: "भगूर, नाशिक",
+    cta: "आध्यात्मिक और सामाजिक गतिविधियाँ",
+    faith: "आस्था",
+    community: "समाज",
+    label: "FAITH • DEVOTION • COMMUNITY",
   },
 };
 
 export default function SpiritualHero() {
   const { language } = useLanguage();
-  const t = CONTENT[language] || CONTENT.mr;
   const reduceMotion = useReducedMotion();
 
-  const scrollNext = () => {
-    document
-      .getElementById("spiritual-overview")
-      ?.scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start",
-      });
+  const t = translations[language] || translations.mr;
+
+  // ==========================================
+  // BUTTON - SMOOTH SCROLL TO NEXT SECTION
+  // ==========================================
+
+  const scrollToTemple = () => {
+    const currentSection =
+      document.getElementById("spiritual-social");
+
+    // First, look for the ShivMandir section by ID.
+    let target =
+      document.getElementById("spiritual-overview");
+
+    // Fallback: find the next section on this page.
+    if (!target && currentSection) {
+      const sections = Array.from(
+        document.querySelectorAll("section")
+      );
+
+      const currentIndex =
+        sections.indexOf(currentSection);
+
+      if (currentIndex !== -1) {
+        target = sections[currentIndex + 1];
+      }
+    }
+
+    if (!target) return;
+
+    // Leave space for the fixed/sticky navbar.
+    const navbarHeight = 90;
+
+    const targetPosition =
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      navbarHeight;
+
+    window.scrollTo({
+      top: Math.max(0, targetPosition),
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
   };
 
-  const reveal = (delay = 0) => ({
-    initial: reduceMotion ? false : { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
+  // ==========================================
+  // ANIMATIONS
+  // ==========================================
+
+  const animation = (delay = 0) => ({
+    initial: reduceMotion
+      ? false
+      : { opacity: 0, y: 18 },
+    whileInView: {
+      opacity: 1,
+      y: 0,
+    },
+    viewport: {
+      once: true,
+      amount: 0.2,
+    },
     transition: {
-      duration: reduceMotion ? 0 : 0.7,
+      duration: reduceMotion ? 0 : 0.65,
       delay: reduceMotion ? 0 : delay,
-      ease: [0.22, 1, 0.36, 1],
     },
   });
 
   return (
     <section
-      id="spiritual-hero"
-      className="relative isolate overflow-hidden bg-[#FFFDF7]"
+      id="spiritual-social"
+      aria-labelledby="spiritual-heading"
+      className="relative overflow-hidden bg-[#FBF8F0] py-12 sm:py-14 lg:py-16"
     >
-      {/* SUBTLE BACKGROUND */}
+      {/* SOFT BACKGROUND */}
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-44 -top-44 h-[420px] w-[420px] rounded-full border border-[#D7CBA6]/35" />
-        <div className="absolute -left-24 -top-24 h-[260px] w-[260px] rounded-full border border-[#D7CBA6]/25" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 h-[320px] w-[700px] -translate-x-1/2 rounded-full bg-[#E9D4B2]/20 blur-[90px]"
+      />
 
-        <div className="absolute bottom-0 right-0 h-[260px] w-[400px] bg-[radial-gradient(ellipse_at_bottom_right,rgba(214,164,77,0.09),transparent_70%)]" />
-      </div>
+      <div className="relative mx-auto max-w-[1250px] px-5 sm:px-8 lg:px-12">
 
-      <div className="relative mx-auto max-w-[1240px] px-5 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
+        {/* CENTER HEADING */}
 
-        <div className="grid items-center gap-9 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
+        <motion.div
+          {...animation(0)}
+          className="mx-auto mb-10 max-w-[850px] text-center"
+        >
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span className="h-px w-8 bg-[#C58A50]" />
 
-          {/* LEFT CONTENT */}
+            <span className="text-[10px] font-extrabold tracking-[2px] text-[#AD7643]">
+              {t.eyebrow}
+            </span>
 
-          <div className="relative z-10">
-            <motion.div
-              {...reveal(0)}
-              className="mb-5 flex items-center gap-3"
-            >
-              <span className="h-[2px] w-8 bg-[#C28B38]" />
-
-              <span className="text-[10px] font-extrabold tracking-[1.8px] text-[#A7792E] sm:text-[11px]">
-                {t.eyebrow}
-              </span>
-            </motion.div>
-
-            <motion.h1
-              {...reveal(0.08)}
-              className="text-[clamp(2.25rem,4.2vw,4.25rem)] font-extrabold leading-[1.17] tracking-[-1.2px] text-[#173923]"
-            >
-              <span className="block">
-                {t.heading1}
-              </span>
-
-              <span className="block text-[#B88335]">
-                {t.heading2}
-              </span>
-            </motion.h1>
-
-            <motion.div
-              {...reveal(0.16)}
-              className="mt-5 max-w-[590px]"
-            >
-              <p className="text-[15px] leading-[27px] text-[#59685C]">
-                {t.description}
-              </p>
-
-              <p className="mt-3 text-[14px] leading-[26px] text-[#748075]">
-                {t.description2}
-              </p>
-            </motion.div>
-
-            <motion.div
-              {...reveal(0.24)}
-              className="mt-7 flex flex-wrap items-center gap-5"
-            >
-              <button
-                type="button"
-                onClick={scrollNext}
-                className="group inline-flex min-h-[46px] items-center gap-3 rounded-[7px] bg-[#173923] px-6 text-[13px] font-extrabold text-white transition-colors hover:bg-[#2D6938]"
-              >
-                {t.explore}
-
-                <ArrowDownRight
-                  size={17}
-                  className="transition-transform group-hover:translate-x-1 group-hover:translate-y-1"
-                />
-              </button>
-
-              <div className="flex items-center gap-2 text-[12px] font-bold text-[#697769]">
-                <MapPin size={16} className="text-[#B88335]" />
-                {t.location}
-              </div>
-            </motion.div>
+            <span className="h-px w-8 bg-[#C58A50]" />
           </div>
 
-          {/* RIGHT IMAGE COMPOSITION */}
+          <h2
+            id="spiritual-heading"
+            className="text-[clamp(2rem,3.2vw,3.25rem)] font-extrabold leading-[1.3] text-[#1E3D29]"
+          >
+            {t.heading1}{" "}
+            <span className="text-[#BD7842]">
+              {t.heading2}
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* THREE COLUMN COMPOSITION */}
+
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.2fr_1fr] lg:gap-9">
+
+          {/* LEFT TEXT */}
 
           <motion.div
-            initial={
-              reduceMotion
-                ? false
-                : { opacity: 0, x: 30 }
-            }
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: reduceMotion ? 0 : 0.85,
-              delay: reduceMotion ? 0 : 0.1,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="relative mx-auto w-full max-w-[510px] lg:max-w-none"
+            {...animation(0.1)}
+            className="order-2 text-center lg:order-1 lg:text-right"
           >
-            {/* PHOTO FRAME */}
-
-            <div className="relative overflow-hidden rounded-[18px] bg-[#E9E3D6]">
-              <img
-                src="/images/ichhapurti-shiv-mandir.webp"
-                alt="Shri Ichhapurti Shiv Mandir, Bhagur Nashik"
-                className="h-[260px] w-full object-cover sm:h-[310px] lg:h-[350px]"
-                loading="eager"
+            <div className="mb-4 flex items-center justify-center gap-2 text-[#BE814A] lg:justify-end">
+              <Flower2
+                size={19}
+                strokeWidth={1.5}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#102519]/85 via-transparent to-transparent" />
+              <span className="text-[12px] font-bold">
+                {t.faith}
+              </span>
+            </div>
 
-              {/* PHOTO CAPTION */}
+            <p className="text-[13px] leading-[28px] text-[#667368] sm:text-[14px]">
+              {t.description1}
+            </p>
+          </motion.div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-[39px] w-[39px] shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/15 text-[#FFD93D] backdrop-blur-sm">
-                    <Flower2 size={20} />
-                  </span>
+          {/* TEMPLE ARCH IMAGE */}
 
-                  <div>
-                    <p className="text-[16px] font-extrabold text-white">
-                      {t.photoLabel}
-                    </p>
+          <motion.div
+            {...animation(0.15)}
+            className="order-1 mx-auto w-full max-w-[440px] lg:order-2"
+          >
+            <div className="relative">
 
-                    <p className="mt-1 text-[12px] text-white/75">
-                      {t.photoSub}
-                    </p>
+              {/* OUTER ARCH */}
+
+              <div
+                aria-hidden="true"
+                className="absolute -inset-[9px] rounded-t-[220px] rounded-b-[20px] border border-[#C9965D]/55"
+              />
+
+              {/* MAIN PHOTO */}
+
+              <div className="group relative h-[360px] overflow-hidden rounded-t-[220px] rounded-b-[20px] bg-[#E8D9C4] sm:h-[400px] lg:h-[430px]">
+                <img
+                  src={TEMPLE_IMAGE}
+                  alt="Shri Ichhapurti Shiv Temple, Bhagur, Nashik"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#15271A]/85 via-transparent to-transparent" />
+
+                {/* IMAGE CAPTION */}
+
+                <div className="absolute bottom-6 left-5 right-5 text-center">
+                  <h3 className="text-[18px] font-extrabold text-white sm:text-[21px]">
+                    {t.temple}
+                  </h3>
+
+                  <div className="mt-2 flex items-center justify-center gap-1.5 text-white/85">
+                    <MapPin size={13} />
+
+                    <span className="text-[11px] font-medium">
+                      {t.location}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
+          </motion.div>
 
-            {/* FLOATING DECORATIVE ACCENT */}
+          {/* RIGHT TEXT */}
 
-            <div className="pointer-events-none absolute -bottom-3 -right-3 -z-10 h-32 w-32 rounded-[18px] border-2 border-[#C28B38]/40" />
+          <motion.div
+            {...animation(0.2)}
+            className="order-3 text-center lg:text-left"
+          >
+            <div className="mb-4 flex items-center justify-center gap-2 text-[#BE814A] lg:justify-start">
+              <Flower2
+                size={19}
+                strokeWidth={1.5}
+              />
 
-            <div className="pointer-events-none absolute -left-4 top-8 hidden h-[90px] w-[5px] rounded-full bg-[#C28B38] lg:block" />
-
-            <div className="pointer-events-none absolute -right-3 -top-3 hidden h-[60px] w-[60px] items-center justify-center rounded-full bg-[#173923] text-[#FFD93D] shadow-lg sm:flex">
-              <HeartHandshake size={26} strokeWidth={1.7} />
+              <span className="text-[12px] font-bold">
+                {t.community}
+              </span>
             </div>
+
+            <p className="text-[13px] leading-[28px] text-[#667368] sm:text-[14px]">
+              {t.description2}
+            </p>
           </motion.div>
         </div>
+
+        {/* ==========================================
+            ACTIVE BOTTOM CTA
+        ========================================== */}
+
+        <motion.div
+          {...animation(0.25)}
+          className="mt-10 flex flex-col items-center gap-5"
+        >
+          <span className="text-[10px] font-bold tracking-[2px] text-[#B28A60]">
+            {t.label}
+          </span>
+
+          <button
+            type="button"
+            onClick={scrollToTemple}
+            aria-label={t.cta}
+            className="group inline-flex min-h-[49px] cursor-pointer items-center gap-5 rounded-full bg-[#1E3D29] py-2 pl-5 pr-2 text-[12px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B97943] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B97943]"
+          >
+            {t.cta}
+
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#1E3D29] transition-transform duration-300 group-hover:rotate-45">
+              <ArrowUpRight size={17} />
+            </span>
+          </button>
+        </motion.div>
       </div>
     </section>
   );

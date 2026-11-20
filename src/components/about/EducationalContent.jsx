@@ -24,7 +24,28 @@ import {
 } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
 
-const IMAGE = "/images/agriculture-education.webp";
+// ==========================================
+// MEDIA CONFIGURATION
+// ==========================================
+
+// Instagram Reel चा Thumbnail आणि Reel Link इथे टाका.
+const INSTAGRAM_REEL = {
+  url: "https://www.instagram.com/p/DPQ1Rn4E9vk/",
+  thumbnail: "/thumbnail.png",
+};
+
+// YouTube Video Link मधून Thumbnail आपोआप येईल.
+const YOUTUBE_VIDEO = {
+  url: "https://www.youtube.com/watch?v=Fo0ep6eb51E",
+  videoId: "Fo0ep6eb51E",
+};
+
+const YOUTUBE_THUMBNAIL =
+  `https://i.ytimg.com/vi/${YOUTUBE_VIDEO.videoId}/hqdefault.jpg`;
+
+// ==========================================
+// SOCIAL MEDIA LINKS
+// ==========================================
 
 const SOCIALS = [
   {
@@ -36,7 +57,7 @@ const SOCIALS = [
   },
   {
     name: "YouTube",
-    url: "https://www.youtube.com/watch?v=Fo0ep6eb51E",
+    url: YOUTUBE_VIDEO.url,
     Icon: FaYoutube,
     color: "#FF0033",
     bg: "#FFF0F0",
@@ -49,6 +70,10 @@ const SOCIALS = [
     bg: "#EAF2FF",
   },
 ];
+
+// ==========================================
+// MULTILINGUAL CONTENT
+// ==========================================
 
 const translations = {
   mr: {
@@ -64,13 +89,11 @@ const translations = {
     connect: "Social Media वर Connect व्हा",
     reelLabel: "AGRICULTURE REELS",
     postLabel: "शेतीविषयक माहिती",
-    postText: "शेतीतील अनुभव, नवीन प्रयोग आणि उपयुक्त माहिती.",
     videoLabel: "FARMING VIDEOS",
-    socialHeading: "Follow the Digital Journey",
-    watch: "Watch on YouTube",
-    viewProfile: "View Profile",
+    watch: "YouTube वर पाहा",
     creatorLabel: "AGRICULTURE CONTENT CREATOR",
   },
+
   en: {
     eyebrow: "SOCIAL MEDIA & CONTENT CREATION",
     heading1: "Connecting Experience",
@@ -84,13 +107,11 @@ const translations = {
     connect: "Connect on Social Media",
     reelLabel: "AGRICULTURE REELS",
     postLabel: "Agricultural Knowledge",
-    postText: "Farming experiences, new experiments and useful information.",
     videoLabel: "FARMING VIDEOS",
-    socialHeading: "Follow the Digital Journey",
     watch: "Watch on YouTube",
-    viewProfile: "View Profile",
     creatorLabel: "AGRICULTURE CONTENT CREATOR",
   },
+
   hi: {
     eyebrow: "SOCIAL MEDIA & CONTENT CREATION",
     heading1: "अनुभव और जानकारी का",
@@ -104,16 +125,57 @@ const translations = {
     connect: "Social Media पर Connect करें",
     reelLabel: "AGRICULTURE REELS",
     postLabel: "कृषि संबंधी जानकारी",
-    postText: "खेती के अनुभव, नए प्रयोग और उपयोगी जानकारी।",
     videoLabel: "FARMING VIDEOS",
-    socialHeading: "Follow the Digital Journey",
-    watch: "Watch on YouTube",
-    viewProfile: "View Profile",
+    watch: "YouTube पर देखें",
     creatorLabel: "AGRICULTURE CONTENT CREATOR",
   },
 };
 
 const EASE = [0.22, 1, 0.36, 1];
+
+// ==========================================
+// THUMBNAIL COMPONENT
+// ==========================================
+
+function MediaThumbnail({
+  src,
+  fallbackSrc,
+  alt,
+  className = "",
+}) {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [failed, setFailed] = useState(false);
+
+  const handleError = () => {
+    if (fallbackSrc && currentSrc !== fallbackSrc) {
+      setCurrentSrc(fallbackSrc);
+    } else {
+      setFailed(true);
+    }
+  };
+
+  if (failed) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-[#DCE8D8] text-[#64856B]">
+        <ImageOff size={32} />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={currentSrc}
+      alt={alt}
+      loading="lazy"
+      onError={handleError}
+      className={`absolute inset-0 h-full w-full object-cover ${className}`}
+    />
+  );
+}
+
+// ==========================================
+// MAIN COMPONENT
+// ==========================================
 
 export default function EducationalContent() {
   const { language } = useLanguage();
@@ -128,7 +190,6 @@ export default function EducationalContent() {
   });
 
   const visible = Boolean(reduceMotion) || isInView;
-  const [imageFailed, setImageFailed] = useState(false);
 
   const reveal = (delay = 0, y = 24) => ({
     initial: { opacity: 0, y },
@@ -159,7 +220,7 @@ export default function EducationalContent() {
 
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-10 xl:px-12">
 
-        {/* HEADING */}
+        {/* SECTION HEADING */}
 
         <div className="mx-auto max-w-[790px] text-center">
           <motion.div
@@ -179,7 +240,10 @@ export default function EducationalContent() {
             id="educational-content-heading"
             className="text-[clamp(2rem,3.3vw,3.25rem)] font-extrabold leading-[1.22] tracking-[-0.7px] text-[#173923]"
           >
-            <motion.span {...reveal(0.1)} className="block">
+            <motion.span
+              {...reveal(0.1)}
+              className="block"
+            >
               {t.heading1}
             </motion.span>
 
@@ -199,48 +263,66 @@ export default function EducationalContent() {
           </motion.p>
         </div>
 
-        {/* SOCIAL FEED SHOWCASE */}
+        {/* =====================================
+            SOCIAL FEED SHOWCASE
+        ===================================== */}
 
         <div className="mt-12 grid items-center gap-5 lg:grid-cols-[0.95fr_1.1fr_0.95fr] lg:gap-6">
 
-          {/* INSTAGRAM REEL CARD */}
+          {/* =====================================
+              INSTAGRAM REEL THUMBNAIL
+          ===================================== */}
 
           <motion.a
             {...reveal(0.25, 40)}
-            href={SOCIALS[0].url}
+            href={INSTAGRAM_REEL.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram Profile"
+            aria-label="Watch Instagram Reel"
             className="group relative mx-auto w-full max-w-[340px] overflow-hidden rounded-[24px] border border-[#E2E9DF] bg-white p-3 shadow-[0_16px_45px_rgba(23,57,35,0.09)] lg:rotate-[-3deg] lg:transition-transform lg:hover:rotate-0"
           >
             <div className="relative h-[340px] overflow-hidden rounded-[18px] bg-[#D9E8D3] sm:h-[390px] lg:h-[360px]">
 
-              {!imageFailed ? (
-                <img
-                  src={IMAGE}
-                  alt="Agricultural content by Ganesh Nisal"
-                  loading="lazy"
-                  onError={() => setImageFailed(true)}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center text-[#64856B]">
-                  <ImageOff size={30} />
-                </div>
-              )}
+              <MediaThumbnail
+                src={INSTAGRAM_REEL.thumbnail}
+                alt="Ganesh Nisal Instagram Reel Thumbnail"
+                className="transition-transform duration-700 group-hover:scale-105"
+              />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0C1D11]/85 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0C1D11]/80 via-transparent to-transparent" />
+
+              {/* INSTAGRAM LABEL */}
 
               <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2">
-                <FaInstagram size={15} color="#D62976" />
+                <FaInstagram
+                  size={15}
+                  color="#D62976"
+                />
+
                 <span className="text-[10px] font-extrabold text-[#173923]">
                   REELS
                 </span>
               </div>
 
               <div className="absolute right-4 top-4">
-                <Clapperboard size={20} className="text-white" />
+                <Clapperboard
+                  size={20}
+                  className="text-white"
+                />
               </div>
+
+              {/* PLAY BUTTON */}
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/60 bg-white/20 text-white shadow-xl backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+                  <Play
+                    size={23}
+                    fill="currentColor"
+                  />
+                </span>
+              </div>
+
+              {/* REEL DETAILS */}
 
               <div className="absolute bottom-5 left-4 right-4">
                 <p className="text-[10px] font-bold tracking-[1px] text-[#FFD93D]">
@@ -255,20 +337,28 @@ export default function EducationalContent() {
                   <Heart size={19} />
                   <MessageCircle size={19} />
                   <Send size={19} />
-                  <Bookmark size={19} className="ml-auto" />
+                  <Bookmark
+                    size={19}
+                    className="ml-auto"
+                  />
                 </div>
               </div>
             </div>
           </motion.a>
 
-          {/* CENTER CREATOR PROFILE */}
+          {/* =====================================
+              CENTER CREATOR PROFILE
+          ===================================== */}
 
           <motion.div
             {...reveal(0.35)}
             className="relative mx-auto w-full max-w-[430px] rounded-[26px] border border-[#E1EADF] bg-white p-6 text-center shadow-[0_18px_50px_rgba(23,57,35,0.07)] sm:p-8"
           >
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[18px] bg-[#E9F3E6] text-[#2F8B42]">
-              <Smartphone size={27} strokeWidth={1.7} />
+              <Smartphone
+                size={27}
+                strokeWidth={1.7}
+              />
             </div>
 
             <p className="mt-5 text-[10px] font-extrabold tracking-[1.7px] text-[#4C9855]">
@@ -289,18 +379,23 @@ export default function EducationalContent() {
               {t.paragraph3}
             </p>
 
+            {/* CONNECT BUTTON */}
+
             <a
-              href="https://www.instagram.com/ganesh_nisal82/"
+              href={SOCIALS[0].url}
               target="_blank"
               rel="noopener noreferrer"
               className="group mt-7 inline-flex items-center gap-3 rounded-full bg-[#173923] px-6 py-3.5 text-[12px] font-extrabold text-white transition-colors hover:bg-[#2E7B3B]"
             >
               {t.connect}
+
               <ArrowUpRight
                 size={17}
                 className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
               />
             </a>
+
+            {/* SOCIAL MEDIA ICONS */}
 
             <div className="mt-7 flex items-center justify-center gap-3">
               {SOCIALS.map((social) => {
@@ -326,30 +421,40 @@ export default function EducationalContent() {
             </div>
           </motion.div>
 
-          {/* YOUTUBE VIDEO CARD */}
+          {/* =====================================
+              YOUTUBE VIDEO THUMBNAIL
+          ===================================== */}
 
           <motion.a
             {...reveal(0.45, 40)}
-            href={SOCIALS[1].url}
+            href={YOUTUBE_VIDEO.url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Watch on YouTube"
             className="group mx-auto w-full max-w-[340px] overflow-hidden rounded-[24px] border border-[#E2E9DF] bg-white p-3 shadow-[0_16px_45px_rgba(23,57,35,0.09)] lg:rotate-[3deg] lg:transition-transform lg:hover:rotate-0"
           >
             <div className="overflow-hidden rounded-[18px]">
-              <div className="relative h-[225px] overflow-hidden bg-[#DCE8D8]">
-                <img
-                  src={IMAGE}
-                  alt="Farming video preview"
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover"
+
+              {/* YOUTUBE THUMBNAIL */}
+
+              <div className="relative aspect-video overflow-hidden bg-[#DCE8D8]">
+                <MediaThumbnail
+                  src={`https://i.ytimg.com/vi/${YOUTUBE_VIDEO.videoId}/maxresdefault.jpg`}
+                  fallbackSrc={YOUTUBE_THUMBNAIL}
+                  alt="Ganesh Nisal YouTube Video Thumbnail"
+                  className="transition-transform duration-700 group-hover:scale-105"
                 />
 
-                <div className="absolute inset-0 bg-[#102519]/20" />
+                <div className="absolute inset-0 bg-[#102519]/15" />
+
+                {/* PLAY BUTTON */}
 
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF0033] text-white shadow-xl transition-transform group-hover:scale-110">
-                    <Play size={23} fill="currentColor" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF0033] text-white shadow-xl transition-transform duration-300 group-hover:scale-110">
+                    <Play
+                      size={23}
+                      fill="currentColor"
+                    />
                   </div>
                 </div>
 
@@ -357,6 +462,8 @@ export default function EducationalContent() {
                   YOUTUBE
                 </span>
               </div>
+
+              {/* YOUTUBE VIDEO DETAILS */}
 
               <div className="bg-white px-3 py-5">
                 <div className="flex items-start gap-3">
@@ -379,14 +486,20 @@ export default function EducationalContent() {
                   <span className="text-[12px] font-bold text-[#437D4B]">
                     {t.watch}
                   </span>
-                  <ExternalLink size={16} className="text-[#7A987F]" />
+
+                  <ExternalLink
+                    size={16}
+                    className="text-[#7A987F]"
+                  />
                 </div>
               </div>
             </div>
           </motion.a>
         </div>
 
-        {/* SOCIAL PLATFORM BAR */}
+        {/* =====================================
+            SOCIAL PLATFORM BAR
+        ===================================== */}
 
         <motion.div
           {...reveal(0.55)}
@@ -403,8 +516,13 @@ export default function EducationalContent() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 rounded-full border border-[#DDE8DA] bg-white px-5 py-3 text-[12px] font-extrabold text-[#244B30] transition-colors hover:border-[#A5CCA5] hover:bg-[#F0F7ED]"
               >
-                <Icon size={17} style={{ color: social.color }} />
+                <Icon
+                  size={17}
+                  style={{ color: social.color }}
+                />
+
                 {social.name}
+
                 <ArrowUpRight
                   size={14}
                   className="text-[#7E9C83] transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"

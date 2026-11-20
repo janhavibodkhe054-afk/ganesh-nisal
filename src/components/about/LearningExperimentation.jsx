@@ -214,10 +214,10 @@ export default function LearningExperimentation() {
 
           <div className="grid grid-cols-[1.05fr_0.95fr] gap-3 sm:gap-4">
             <ExperimentPhoto
-              src="/images/rooftop-strawberry.webp"
+              src="/ganesh.jpeg"
               alt="Rooftop strawberry cultivation experiment"
-              label={t.label1}
-              title={t.experiment1}
+              
+              
               visible={visible}
               reduceMotion={reduceMotion}
               delay={0.2}
@@ -226,10 +226,10 @@ export default function LearningExperimentation() {
 
             <div className="flex flex-col gap-3 sm:gap-4">
               <ExperimentPhoto
-                src="/images/terrace-gardening.webp"
+                src="https://i.pinimg.com/1200x/38/d5/19/38d5198c59ae1bf1a3b12ebfea6d2de6.jpg"
                 alt="Home gardening experiment"
-                label={t.label2}
-                title={t.experiment2}
+                
+                
                 visible={visible}
                 reduceMotion={reduceMotion}
                 delay={0.35}
@@ -290,22 +290,7 @@ export default function LearningExperimentation() {
               {t.p4}
             </motion.p>
 
-            <motion.div
-              {...reveal(0.55)}
-              className="mt-8"
-            >
-              <Link
-                to="/farming-experiments"
-                className="group inline-flex items-center gap-4 rounded-full bg-[#173923] px-6 py-3.5 text-[12px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2E7B3B]"
-              >
-                {t.cta}
-
-                <ArrowUpRight
-                  size={17}
-                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
-              </Link>
-            </motion.div>
+            
           </div>
         </div>
       </div>

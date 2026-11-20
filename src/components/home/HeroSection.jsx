@@ -357,28 +357,7 @@ xl:px-14
               />
             </Link>
 
-            <Link
-              to="/farming-experiments"
-              className="
-                group inline-flex
-                items-center gap-2
-                px-2 py-3
-                text-[12px] font-semibold
-                text-[#2F6339]
-                transition-colors
-                hover:text-[#35A846]
-              "
-            >
-              {t.secondary}
-
-              <ArrowRight
-                size={16}
-                className="
-                  transition-transform
-                  group-hover:translate-x-1
-                "
-              />
-            </Link>
+            
           </motion.div>
         </div>
 

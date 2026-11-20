@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
-const HERO_IMAGE = "/images/ganesh-nisal-about.webp";
+const HERO_IMAGE = "/i16.jpeg";
 
 const translations = {
   mr: {

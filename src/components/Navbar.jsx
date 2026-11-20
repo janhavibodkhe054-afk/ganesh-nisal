@@ -157,6 +157,7 @@ const CONTENT = {
 // SOCIAL ICON COMPONENT
 // ==========================================
 
+
 function SocialIcons({ mobile = false }) {
   return (
     <div
@@ -164,7 +165,7 @@ function SocialIcons({ mobile = false }) {
         mobile ? "justify-center gap-3" : "gap-2"
       }`}
     >
-      {socials.map(({ icon: Icon, label, url, hover }) => (
+      {socials.map(({ icon: Icon, label, url, color }) => (
         <a
           key={label}
           href={url}
@@ -172,25 +173,43 @@ function SocialIcons({ mobile = false }) {
           rel="noopener noreferrer"
           aria-label={label}
           title={label}
+          style={{
+            color: color,
+            borderColor: `${color}35`,
+            backgroundColor: mobile
+              ? "#FFFFFF"
+              : `${color}10`,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = color;
+            e.currentTarget.style.color = "#FFFFFF";
+            e.currentTarget.style.borderColor = color;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = mobile
+              ? "#FFFFFF"
+              : `${color}10`;
+            e.currentTarget.style.color = color;
+            e.currentTarget.style.borderColor = `${color}35`;
+          }}
           className={`
             group flex shrink-0 items-center justify-center
             rounded-full border transition-all duration-300
-            hover:-translate-y-[2px] hover:border-transparent
-            hover:text-white hover:shadow-lg
-            ${hover}
+            hover:-translate-y-[2px] hover:shadow-lg
             ${
               mobile
-                ? "h-[43px] w-[43px] border-white/20 bg-white/10 text-white"
-                : "h-[36px] w-[36px] border-[#E6EAE4] bg-[#F7F9F5] text-[#24392A]"
+                ? "h-[43px] w-[43px]"
+                : "h-[36px] w-[36px]"
             }
           `}
         >
-          <Icon size={mobile ? 17 : 15} />
+          <Icon size={mobile ? 19 : 17} />
         </a>
       ))}
     </div>
   );
 }
+
 
 // ==========================================
 // LANGUAGE SWITCHER
@@ -235,57 +254,7 @@ function LanguageSwitcher({ language, setLanguage, mobile = false }) {
     );
   }
 
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((prev) => !prev)}
-        aria-label="Select language"
-        aria-expanded={open}
-        className="flex h-[38px] items-center gap-2 rounded-full border border-[#E1E7DE] bg-[#F7F9F5] px-3 text-[12px] font-bold text-[#173923] transition-colors hover:border-[#B89B61]"
-      >
-        <Globe2 size={15} className="text-[#528347]" />
-        {LANGUAGES.find((item) => item.code === language)?.short || "मराठी"}
-        <span className="text-[10px] text-[#87948A]">▾</span>
-      </button>
-
-      {open && (
-        <>
-          <button
-            type="button"
-            aria-label="Close language options"
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 z-[101] cursor-default"
-          />
-
-          <div className="absolute right-0 top-[calc(100%+9px)] z-[102] w-[165px] overflow-hidden rounded-xl border border-[#E4E9E0] bg-white p-1.5 shadow-[0_12px_35px_rgba(0,0,0,0.12)]">
-            {LANGUAGES.map((item) => {
-              const active = language === item.code;
-
-              return (
-                <button
-                  key={item.code}
-                  type="button"
-                  onClick={() => {
-                    setLanguage(item.code);
-                    setOpen(false);
-                  }}
-                  className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-[12px] font-semibold transition-colors ${
-                    active
-                      ? "bg-[#EDF4EA] text-[#285A2B]"
-                      : "text-[#354A3A] hover:bg-[#F5F7F2]"
-                  }`}
-                >
-                  {item.label}
-                  {active && <Check size={14} />}
-                </button>
-              );
-            })}
-          </div>
-        </>
-      )}
-    </div>
-  );
+  
 }
 
 // ==========================================

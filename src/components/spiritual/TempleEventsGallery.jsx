@@ -11,7 +11,6 @@ import {
 } from "framer-motion";
 import {
   ArrowUpRight,
-  Play,
   X,
   ChevronLeft,
   ChevronRight,
@@ -53,130 +52,36 @@ const InstagramIcon = ({ size = 24, className = "" }) => (
 // SETTINGS
 // ==========================================
 
-// Add actual temple Instagram URL.
-const INSTAGRAM_URL = "";
-
-// Replace these filenames with actual temple photos.
-// Files: public/images/temple-gallery/
-
-const GALLERY = [
-  {
-    id: 1,
-    type: "image",
-    category: "religious",
-    src: "/images/temple-gallery/religious-01.webp",
-    shape: "tall",
-  },
-  {
-    id: 2,
-    type: "image",
-    category: "shravan",
-    src: "/images/temple-gallery/shravan-01.webp",
-    shape: "normal",
-  },
-  {
-    id: 3,
-    type: "image",
-    category: "education",
-    src: "/images/temple-gallery/education-01.webp",
-    shape: "normal",
-  },
-  {
-    id: 4,
-    type: "image",
-    category: "social",
-    src: "/images/temple-gallery/social-01.webp",
-    shape: "tall",
-  },
-  {
-    id: 5,
-    type: "image",
-    category: "religious",
-    src: "/images/temple-gallery/religious-02.webp",
-    shape: "normal",
-  },
-  {
-    id: 6,
-    type: "video",
-    category: "shravan",
-    src: "/images/temple-gallery/shravan-video-01.mp4",
-    poster: "/images/temple-gallery/shravan-02.webp",
-    shape: "normal",
-  },
-  {
-    id: 7,
-    type: "image",
-    category: "education",
-    src: "/images/temple-gallery/education-02.webp",
-    shape: "normal",
-  },
-  {
-    id: 8,
-    type: "image",
-    category: "social",
-    src: "/images/temple-gallery/social-02.webp",
-    shape: "normal",
-  },
-  {
-    id: 9,
-    type: "image",
-    category: "religious",
-    src: "/images/temple-gallery/religious-03.webp",
-    shape: "normal",
-  },
-  {
-    id: 10,
-    type: "image",
-    category: "shravan",
-    src: "/images/temple-gallery/shravan-03.webp",
-    shape: "tall",
-  },
-  {
-    id: 11,
-    type: "image",
-    category: "education",
-    src: "/images/temple-gallery/education-03.webp",
-    shape: "normal",
-  },
-  {
-    id: 12,
-    type: "image",
-    category: "social",
-    src: "/images/temple-gallery/social-03.webp",
-    shape: "normal",
-  },
-  {
-    id: 13,
-    type: "image",
-    category: "religious",
-    src: "/images/temple-gallery/religious-04.webp",
-    shape: "normal",
-  },
-  {
-    id: 14,
-    type: "image",
-    category: "shravan",
-    src: "/images/temple-gallery/shravan-04.webp",
-    shape: "normal",
-  },
-  {
-    id: 15,
-    type: "image",
-    category: "education",
-    src: "/images/temple-gallery/education-04.webp",
-    shape: "tall",
-  },
-  {
-    id: 16,
-    type: "image",
-    category: "social",
-    src: "/images/temple-gallery/social-04.webp",
-    shape: "normal",
-  },
-];
+const INSTAGRAM_URL = "https://www.instagram.com/ismlahvit/";
 
 // ==========================================
-// LANGUAGE CONTENT
+// 60 PHOTOS FROM PUBLIC FOLDER
+// public/i1.jpeg ... public/i60.jpeg
+// ==========================================
+
+const TALL_PHOTOS = [
+  1, 4, 10, 15, 21, 28, 35, 42, 49, 56,
+];
+
+const GALLERY = Array.from(
+  { length: 60 },
+  (_, index) => {
+    const number = index + 1;
+
+    return {
+      id: number,
+      type: "image",
+      category: "temple",
+      src: `/i${number}.jpeg`,
+      shape: TALL_PHOTOS.includes(number)
+        ? "tall"
+        : "normal",
+    };
+  }
+);
+
+// ==========================================
+// MULTILINGUAL CONTENT
 // ==========================================
 
 const CONTENT = {
@@ -185,19 +90,17 @@ const CONTENT = {
     title1: "श्रद्धा आणि समाजकार्याचे",
     title2: "संस्मरणीय क्षण!",
     description:
-      "मंदिरातील धार्मिक सोहळे, पूजाविधी, विद्यार्थ्यांचे उपक्रम आणि सामाजिक कार्यक्रम यांची छायाचित्रे व व्हिडिओ येथे पाहता येतील.",
+      "मंदिरातील धार्मिक सोहळे, पूजाविधी, विद्यार्थ्यांचे उपक्रम आणि सामाजिक कार्यक्रम यांची छायाचित्रे येथे पाहता येतील.",
     instagram: "मंदिराचे Instagram Page पाहा",
     instagramSub: "अधिक क्षणचित्रे आणि कार्यक्रमांसाठी",
     galleryLabel: "मंदिर क्षणचित्र संग्रह",
     close: "बंद करा",
     previous: "मागील फोटो",
     next: "पुढील फोटो",
-    noMedia: "छायाचित्र लवकरच उपलब्ध होईल.",
+    noMedia: "छायाचित्र उपलब्ध नाही.",
+    photo: "फोटो",
     captions: {
-      religious: "धार्मिक सोहळे",
-      shravan: "श्रावण विशेष",
-      education: "शैक्षणिक उपक्रम",
-      social: "सामाजिक उपक्रम",
+      temple: "मंदिरातील उपक्रम व क्षणचित्रे",
     },
   },
 
@@ -206,19 +109,17 @@ const CONTENT = {
     title1: "Memorable Moments of",
     title2: "Faith & Community",
     description:
-      "Explore photographs and videos of religious ceremonies, worship rituals, student activities and social initiatives at the temple.",
+      "Explore photographs of religious ceremonies, worship rituals, student activities and social initiatives at the temple.",
     instagram: "Visit Temple Instagram Page",
     instagramSub: "For more moments and event updates",
     galleryLabel: "Temple Events Gallery",
     close: "Close",
     previous: "Previous photo",
     next: "Next photo",
-    noMedia: "Photograph coming soon.",
+    noMedia: "Photograph unavailable.",
+    photo: "PHOTO",
     captions: {
-      religious: "Religious Events",
-      shravan: "Shravan Special",
-      education: "Educational Activities",
-      social: "Social Initiatives",
+      temple: "Temple Events & Moments",
     },
   },
 
@@ -227,19 +128,17 @@ const CONTENT = {
     title1: "श्रद्धा और समाजसेवा के",
     title2: "अविस्मरणीय पल!",
     description:
-      "मंदिर के धार्मिक समारोहों, पूजा-विधियों, विद्यार्थियों की गतिविधियों और सामाजिक कार्यक्रमों की तस्वीरें एवं वीडियो यहाँ देख सकते हैं।",
+      "मंदिर के धार्मिक समारोहों, पूजा-विधियों, विद्यार्थियों की गतिविधियों और सामाजिक कार्यक्रमों की तस्वीरें यहाँ देख सकते हैं।",
     instagram: "मंदिर का Instagram पेज देखें",
     instagramSub: "अधिक तस्वीरों और कार्यक्रमों के लिए",
     galleryLabel: "मंदिर की तस्वीरें",
     close: "बंद करें",
     previous: "पिछली तस्वीर",
     next: "अगली तस्वीर",
-    noMedia: "तस्वीर जल्द उपलब्ध होगी।",
+    noMedia: "तस्वीर उपलब्ध नहीं है।",
+    photo: "फोटो",
     captions: {
-      religious: "धार्मिक समारोह",
-      shravan: "श्रावण विशेष",
-      education: "शैक्षणिक गतिविधियाँ",
-      social: "सामाजिक पहल",
+      temple: "मंदिर के कार्यक्रम और झलकियाँ",
     },
   },
 };
@@ -256,27 +155,56 @@ function GalleryTile({
   reduceMotion,
 }) {
   const [failed, setFailed] = useState(false);
+
   const isTall = item.shape === "tall";
 
   return (
     <motion.button
       type="button"
       initial={
-        reduceMotion ? false : { opacity: 0, y: 22 }
+        reduceMotion
+          ? false
+          : { opacity: 0, y: 22 }
       }
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{
-        duration: 0.45,
-        delay: Math.min(index % 4, 3) * 0.07,
+      whileInView={{
+        opacity: 1,
+        y: 0,
       }}
-      whileHover={reduceMotion ? {} : { y: -4 }}
-      onClick={() => !failed && onOpen(index)}
+      viewport={{
+        once: true,
+        amount: 0.1,
+      }}
+      transition={{
+        duration: reduceMotion ? 0 : 0.45,
+        delay: reduceMotion
+          ? 0
+          : Math.min(index % 4, 3) * 0.07,
+      }}
+      whileHover={
+        reduceMotion
+          ? undefined
+          : { y: -4 }
+      }
+      onClick={() => {
+        if (!failed) onOpen(index);
+      }}
       disabled={failed}
-      aria-label={t.captions[item.category]}
-      className={`group relative block w-full overflow-hidden rounded-[15px] bg-[#E5E9DF] text-left ${
-        isTall ? "row-span-2" : ""
-      }`}
+      aria-label={`${t.captions.temple} ${item.id}`}
+      className={`
+        group relative block w-full
+        overflow-hidden rounded-[15px]
+        bg-[#E5E9DF] text-left
+        ${
+          isTall
+            ? "row-span-2"
+            : ""
+        }
+        ${
+          failed
+            ? "cursor-default"
+            : "cursor-pointer"
+        }
+      `}
     >
       {failed ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-3 text-center">
@@ -284,43 +212,35 @@ function GalleryTile({
             size={25}
             className="text-[#8BA08A]"
           />
+
           <span className="text-[11px] text-[#657A68]">
             {t.noMedia}
           </span>
         </div>
       ) : (
         <>
+          {/* PHOTO */}
+
           <img
-            src={
-              item.type === "video"
-                ? item.poster
-                : item.src
-            }
-            alt={t.captions[item.category]}
+            src={item.src}
+            alt={`${t.captions.temple} - ${item.id}`}
             loading="lazy"
+            decoding="async"
             onError={() => setFailed(true)}
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
           />
 
+          {/* GRADIENT */}
+
           <div className="absolute inset-0 bg-gradient-to-t from-[#07170E]/80 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-100" />
 
+          {/* TOP ARROW */}
+
           <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-black/20 text-white backdrop-blur-sm">
-            {item.type === "video" ? (
-              <Play size={16} fill="currentColor" />
-            ) : (
-              <ArrowUpRight size={17} />
-            )}
+            <ArrowUpRight size={17} />
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
-            <span className="mb-1 block text-[9px] font-bold tracking-[1.3px] text-[#E5C17B]">
-              {item.type === "video" ? "VIDEO" : "PHOTO"}
-            </span>
-
-            <h3 className="text-[12px] font-bold text-white sm:text-[15px]">
-              {t.captions[item.category]}
-            </h3>
-          </div>
+          
         </>
       )}
     </motion.button>
@@ -333,19 +253,30 @@ function GalleryTile({
 
 export default function TempleEventsGallery() {
   const { language } = useLanguage();
+
   const t = CONTENT[language] || CONTENT.mr;
 
   const reduceMotion = useReducedMotion();
-  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const [selectedIndex, setSelectedIndex] =
+    useState(null);
 
   const selected =
     selectedIndex !== null
       ? GALLERY[selectedIndex]
       : null;
 
+  // ==========================================
+  // CLOSE LIGHTBOX
+  // ==========================================
+
   const closeLightbox = useCallback(() => {
     setSelectedIndex(null);
   }, []);
+
+  // ==========================================
+  // NEXT / PREVIOUS
+  // ==========================================
 
   const navigate = useCallback((direction) => {
     setSelectedIndex((current) => {
@@ -357,7 +288,9 @@ export default function TempleEventsGallery() {
     });
   }, []);
 
+  // ==========================================
   // KEYBOARD NAVIGATION
+  // ==========================================
 
   useEffect(() => {
     if (selectedIndex === null) return;
@@ -372,16 +305,30 @@ export default function TempleEventsGallery() {
       }
     };
 
-    window.addEventListener("keydown", handleKey);
+    window.addEventListener(
+      "keydown",
+      handleKey
+    );
 
-    const oldOverflow = document.body.style.overflow;
+    const oldOverflow =
+      document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
 
     return () => {
-      window.removeEventListener("keydown", handleKey);
-      document.body.style.overflow = oldOverflow;
+      window.removeEventListener(
+        "keydown",
+        handleKey
+      );
+
+      document.body.style.overflow =
+        oldOverflow;
     };
-  }, [selectedIndex, closeLightbox, navigate]);
+  }, [
+    selectedIndex,
+    closeLightbox,
+    navigate,
+  ]);
 
   return (
     <section
@@ -394,7 +341,9 @@ export default function TempleEventsGallery() {
 
       <div className="relative mx-auto max-w-[1240px] px-4 sm:px-8 lg:px-10">
 
-        {/* HEADING */}
+        {/* ==========================================
+            SECTION HEADING
+        ========================================== */}
 
         <motion.div
           initial={
@@ -402,16 +351,23 @@ export default function TempleEventsGallery() {
               ? false
               : { opacity: 0, y: 20 }
           }
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: reduceMotion ? 0 : 0.6,
+          }}
           className="mx-auto max-w-[790px] text-center"
         >
           <div className="mb-3 flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-[#B88335]" />
 
             <span className="text-[10px] font-extrabold tracking-[2px] text-[#9A712D]">
-              TEMPLE EVENTS GALLERY
+              {t.eyebrow}
             </span>
 
             <span className="h-px w-8 bg-[#B88335]" />
@@ -419,6 +375,7 @@ export default function TempleEventsGallery() {
 
           <h2 className="text-[clamp(2rem,3.5vw,3.2rem)] font-extrabold leading-[1.2] tracking-[-1px] text-[#102519]">
             {t.title1}
+
             <span className="block text-[#B88335]">
               {t.title2}
             </span>
@@ -429,9 +386,9 @@ export default function TempleEventsGallery() {
           </p>
         </motion.div>
 
-        {/* ====================================
-            16 PHOTO MASONRY GRID
-        ==================================== */}
+        {/* ==========================================
+            60 PHOTO MASONRY GRID
+        ========================================== */}
 
         <div className="mt-9 grid auto-rows-[135px] grid-cols-2 gap-2.5 sm:auto-rows-[175px] sm:gap-3.5 lg:auto-rows-[180px] lg:grid-cols-4 lg:gap-4">
           {GALLERY.map((item, index) => (
@@ -446,7 +403,9 @@ export default function TempleEventsGallery() {
           ))}
         </div>
 
-        {/* INSTAGRAM CTA */}
+        {/* ==========================================
+            INSTAGRAM CTA
+        ========================================== */}
 
         <motion.div
           initial={
@@ -454,9 +413,16 @@ export default function TempleEventsGallery() {
               ? false
               : { opacity: 0, y: 18 }
           }
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: reduceMotion ? 0 : 0.5,
+          }}
           className="mt-9 flex flex-col items-center justify-between gap-5 rounded-[18px] bg-[#102519] px-5 py-6 sm:flex-row sm:px-8"
         >
           <div className="flex items-center gap-4">
@@ -501,9 +467,9 @@ export default function TempleEventsGallery() {
         </motion.div>
       </div>
 
-      {/* ====================================
+      {/* ==========================================
           FULLSCREEN LIGHTBOX
-      ==================================== */}
+      ========================================== */}
 
       <AnimatePresence>
         {selected && (
@@ -511,18 +477,23 @@ export default function TempleEventsGallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{
+              duration: reduceMotion ? 0 : 0.2,
+            }}
             role="dialog"
             aria-modal="true"
             aria-label={t.galleryLabel}
             onClick={closeLightbox}
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#041009]/95 p-4 backdrop-blur-xl sm:p-8"
           >
-            {/* CLOSE BUTTON */}
+            {/* CLOSE */}
 
             <button
               type="button"
-              onClick={closeLightbox}
+              onClick={(event) => {
+                event.stopPropagation();
+                closeLightbox();
+              }}
               aria-label={t.close}
               className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-colors hover:bg-white/20 sm:right-8 sm:top-8"
             >
@@ -557,7 +528,7 @@ export default function TempleEventsGallery() {
               <ChevronRight size={23} />
             </button>
 
-            {/* MEDIA CONTENT */}
+            {/* SELECTED PHOTO */}
 
             <motion.div
               key={selected.id}
@@ -566,32 +537,29 @@ export default function TempleEventsGallery() {
                   ? false
                   : { opacity: 0, scale: 0.96 }
               }
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.25 }}
-              onClick={(event) => event.stopPropagation()}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={{
+                duration: reduceMotion ? 0 : 0.25,
+              }}
+              onClick={(event) =>
+                event.stopPropagation()
+              }
               className="flex max-h-[82vh] w-full max-w-[1000px] flex-col items-center justify-center"
             >
-              {selected.type === "video" ? (
-                <video
-                  key={selected.src}
-                  src={selected.src}
-                  poster={selected.poster}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="max-h-[72vh] w-full rounded-xl object-contain"
-                />
-              ) : (
-                <img
-                  src={selected.src}
-                  alt={t.captions[selected.category]}
-                  className="max-h-[72vh] max-w-full rounded-xl object-contain"
-                />
-              )}
+              <img
+                src={selected.src}
+                alt={`${t.captions.temple} - ${selected.id}`}
+                className="max-h-[72vh] max-w-full rounded-xl object-contain"
+              />
+
+              {/* PHOTO DETAILS */}
 
               <div className="mt-4 text-center">
                 <p className="text-[13px] font-bold text-white">
-                  {t.captions[selected.category]}
+                  {t.captions.temple}
                 </p>
 
                 <p className="mt-1 text-[11px] text-white/50">
